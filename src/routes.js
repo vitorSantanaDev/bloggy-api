@@ -15,6 +15,7 @@ routes.put('/users', UserController.update)
 routes.delete('/users', UserController.delete)
 routes.post('/posts', PostController.store)
 routes.get('/posts', PostController.indexAll)
-routes.get('/posts/:userId', PostController.index)
+routes.get('/posts/:user_id', PostController.index)
+routes.get('/:post_id/posts', PostController.show)
 
 export default routes
