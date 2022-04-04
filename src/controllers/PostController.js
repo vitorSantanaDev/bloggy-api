@@ -49,6 +49,17 @@ class PostController {
       return response.status(404).json({ error: 'Post not found.' })
     }
   }
+
+  async delete(request, response) {
+    try {
+      await Post.findOneAndDelete({ _id: request.params.post_id })
+      return response
+        .status(200)
+        .json({ message: 'The post was successfully deleted.' })
+    } catch (error) {
+      return response.status(404).json({ error: 'Post not found.' })
+    }
+  }
 }
 
 export default new PostController()
