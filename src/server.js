@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
+import cors from 'cors'
 
 import routes from './routes'
 
@@ -14,6 +15,7 @@ mongoose.connect(
   { useNewUrlParser: true, useUnifiedTopology: true }
 )
 
+server.use(cors())
 server.use(express.json())
 server.use(routes)
 

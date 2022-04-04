@@ -49,6 +49,37 @@ class PostController {
       return response.status(404).json({ error: 'Post not found.' })
     }
   }
+
+  async delete(request, response) {
+    try {
+      await Post.findOneAndDelete({ _id: request.params.post_id })
+      return response
+        .status(200)
+        .json({ message: 'The post was successfully deleted.' })
+    } catch (error) {
+      return response.status(404).json({ error: 'Post not found.' })
+    }
+  }
+
+  async update(request, response) {
+    try {
+      const { title, subtitle, tags, cover, content } = request.body
+      const post = await Post.findOne({ _id: request.params.post_id })
+
+      post.title = title || post.title
+      post.subtitle = subtitle || post.subtitle
+      post.tags = tags || post.tags
+      post.cover = cover || post.tags
+      post.content = content || post.cover
+
+      await post.save()
+
+      return response.status(200).json(post)
+    } catch (error) {
+      console.log(error)
+      return response.status(404).json({ error: 'Post not found.' })
+    }
+  }
 }
 
 export default new PostController()
