@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "nodemon": "nodemon src/server.js",
-    "lint": "eslint src --max-warnings=0"
+    "lint": "eslint src --max-warnings=0",
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "start": "node dist/server.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
